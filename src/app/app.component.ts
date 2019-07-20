@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { AuthenticationService } from './services/authentication.service';
+
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
@@ -14,7 +17,9 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) {
 
     this.initializeApp();
@@ -26,6 +31,15 @@ export class AppComponent {
       this.splashScreen.hide();
 
       this.languageService.setInitialAppLanguage();
+
+      this.authenticationService.authenticationState.subscribe(state => {
+        if (state) {
+          this.router.navigate(['members', 'dashboard']);
+        } else {
+          this.router.navigate(['login']);
+        }
+      });
+
     });
   }
 }
