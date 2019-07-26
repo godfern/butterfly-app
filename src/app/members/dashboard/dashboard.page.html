@@ -10,5 +10,10 @@
 </ion-header>
 
 <ion-content padding>
+  Welcome to the members only
+  <p>{{data}}</p>
+
+  <ion-button expand="full" (click)="loadSpecialInfo()">Load Spcial Info</ion-button>
+  <ion-button expand="full" (click)="clearToken()">Clear JWT</ion-button>
 
 </ion-content>

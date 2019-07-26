@@ -1,6 +1,6 @@
 {
     "HOME": {
-        "title": "Home",
+        "title": "My Home",
         "greeting": "Hey {{name}} how are you",
         "withcode": "<br><br>With code <b>epsich</b>",
         "btn": "Alarm test"
