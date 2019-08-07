@@ -28,8 +28,13 @@
     "@ionic/storage": "^2.2.0",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
+    "cordova-android": "^8.0.0",
+    "cordova-android-support-gradle-release": "^3.0.1",
+    "cordova-browser": "^6.0.0",
+    "cordova-ios": "^5.0.1",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.1",
+    "sharp": "^0.22.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.29"
   },
@@ -57,7 +62,29 @@
     "protractor": "~5.4.0",
     "ts-node": "~8.3.0",
     "tslint": "~5.17.0",
-    "typescript": "~3.1.6"
+    "typescript": "~3.1.6",
+    "cordova-plugin-whitelist": "1.3.3",
+    "cordova-plugin-statusbar": "2.4.2",
+    "cordova-plugin-device": "2.0.2",
+    "cordova-plugin-splashscreen": "5.0.2",
+    "cordova-plugin-ionic-webview": "^4.0.0",
+    "cordova-plugin-ionic-keyboard": "^2.0.5"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-android-support-gradle-release": {}
+    },
+    "platforms": [
+      "browser",
+      "android",
+      "ios"
+    ]
+  }
 }

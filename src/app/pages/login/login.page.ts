@@ -1,6 +1,9 @@
+import { LanguagePopoverPage } from '../language-popover/language-popover.page';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { PopoverController, AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
  
 @Component({
   selector: 'app-login',
@@ -11,7 +14,7 @@ export class LoginPage implements OnInit {
 
   credentialsForm: FormGroup;
  
-  constructor(private formBuilder: FormBuilder,private authService: AuthenticationService) { }
+  constructor(private formBuilder: FormBuilder,private authService: AuthenticationService, private popoverCtrl: PopoverController, private alertCtrl: AlertController, private translate: TranslateService) { }
  
   ngOnInit() {
     this.credentialsForm = this.formBuilder.group({
@@ -28,6 +31,23 @@ export class LoginPage implements OnInit {
     this.authService.register(this.credentialsForm.value).subscribe(res => {
       this.authService.login(this.credentialsForm.value).subscribe();
     });
+  }
+
+  async showAlert(ev) {
+    const alert = await this.alertCtrl.create({
+      header: this.translate.instant('ALERT.header'),
+      message: this.translate.instant('ALERT.msg'),
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  async openLanguagePopover(ev) {
+    const popover = await this.popoverCtrl.create({
+      component: LanguagePopoverPage,
+      event: ev
+    });
+    await popover.present();
   }
  
 }

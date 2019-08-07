@@ -12,6 +12,7 @@
 <ion-content padding>
   Welcome to the members only
   <p>{{data}}</p>
+  {{ 'HOME.greeting' | translate:params }}
 
   <ion-button expand="full" (click)="loadSpecialInfo()">Load Spcial Info</ion-button>
   <ion-button expand="full" (click)="clearToken()">Clear JWT</ion-button>

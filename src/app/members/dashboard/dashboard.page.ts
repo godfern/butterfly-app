@@ -11,6 +11,9 @@ import { Storage } from '@ionic/storage';
 export class DashboardPage implements OnInit {
 
   data = '';
+  params = {
+    name: 'Godfrey'
+  }
 
   constructor(private authService: AuthenticationService, private storage: Storage, private toastController: ToastController) { }
 
