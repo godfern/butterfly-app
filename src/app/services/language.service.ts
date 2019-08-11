@@ -32,6 +32,9 @@ export class LanguageService {
       {
         text: 'German', value: 'de', img: 'assets/icon/de.png'
       },
+      {
+        text: 'Hebrew', value: 'heb', img: 'assets/icon/heb.png'
+      },
     ]
   }
 

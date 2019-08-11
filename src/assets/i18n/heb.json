@@ -1,15 +1,18 @@
 {
     "LOGIN": {
-        "page-title": "Login",
+        "page-title": "התחברות",
         "login-form":{
             "labels":{
-                "email":"Email",
-                "password":"Passowrd"
-            },
-            "buttons": {
-                "submit": "Login"
+                "email":"דוא\"ל",
+                "password":"סיסמה"
             }
         }
+    },
+    "REGISTER": {
+        "title": "הירשם",
+        "greeting": "Hey {{name}} how are you",
+        "withcode": "<br><br>With code <b>epsich</b>",
+        "btn": "Alarm test"
     },
     "HOME": {
         "title": "My Home",

@@ -14,8 +14,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
+import { RegisterUtils } from '../../src/app/utils/register';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -59,7 +62,8 @@ export function jwtOptionsFactory(storage) {
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    RegisterUtils
   ],
   bootstrap: [AppComponent]
 })
