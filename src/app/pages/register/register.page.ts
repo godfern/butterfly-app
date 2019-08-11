@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 import { AuthenticationService } from './../../services/authentication.service';
+import { OtpService } from './../../services/otp.service';
 
 import { MustMatch } from '../../_shared/helpers/form.helper';
 import { RegisterUtils } from '../../utils/register';
@@ -18,7 +22,11 @@ export class RegisterPage implements OnInit {
   // payload = {};
 
   constructor(private formBuilder: FormBuilder,
-              private authService: AuthenticationService, public registerUtils: RegisterUtils) { }
+    private authService: AuthenticationService,
+    private otpService: OtpService,
+    public registerUtils: RegisterUtils,
+    private nav: NavController,
+    private router: Router) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -36,18 +44,17 @@ export class RegisterPage implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
 
-        // stop here if form is invalid
-        if (this.registerForm.invalid) {
-            return;
-        }
-
-        // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
-        let payload =  this.registerUtils.getRegisterPayload(this.registerForm.value); 
-
-      this.authService.register(payload).subscribe(res => {
-      // this.authService.login(this.registerForm.value).subscribe();
-      });
+    let payload = this.registerUtils.getRegisterPayload(this.registerForm.value);
+    this.authService.register(payload).subscribe(res => {
+      let emailId = res.emailId;
+      this.otpService.sendOTP({id:res._id}).subscribe(res => {
+        this.router.navigate(['/otp', emailId]);
+      })
+    });
   }
-
 }

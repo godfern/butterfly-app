@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
+  { path: 'otp/:emailId', loadChildren: './pages/otp/otp.module#OtpPageModule' },
   // { path: 'dashboard', loadChildren: './members/dashboard/dashboard.module#DashboardPageModule' },
   { path: 'language-popover', loadChildren: './pages/language-popover/language-popover.module#LanguagePopoverPageModule' },
   { 

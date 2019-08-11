@@ -1,10 +1,14 @@
 {
     "LOGIN": {
         "page-title": "התחברות",
-        "login-form":{
-            "labels":{
-                "email":"דוא\"ל",
-                "password":"סיסמה"
+        "login-form": {
+            "labels": {
+                "email": "דוא\"ל",
+                "password": "סיסמה"
+            },
+            "buttons": {
+                "submit": "התחברות",
+                "register": "הירשם"
             }
         }
     },

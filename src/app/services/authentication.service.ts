@@ -43,17 +43,10 @@ export class AuthenticationService {
   }
 
   register(credentials) {
-    // return this.http.post(`${this.url}/api/register`, credentials).pipe(
-    //   catchError(e => {
-    //     this.showAlert(e.error.msg);
-    //     throw new Error(e)
-    //   })
-    // )
-
     return this.http.post(`${this.registerUrl}/butterfly-srv/user/create`, credentials)
     .pipe(
       tap(res => {
-        this.showAlert(res);
+        return res;
       }),
       catchError(e => {
         this.showAlert(e.error.error);

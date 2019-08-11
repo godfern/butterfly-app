@@ -7,7 +7,8 @@
                 "password":"Passowrd"
             },
             "buttons": {
-                "submit": "Login"
+                "submit": "Login",
+                "register": "Register"
             }
         }
     },
