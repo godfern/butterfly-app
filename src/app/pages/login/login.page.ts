@@ -2,9 +2,10 @@ import { LanguagePopoverPage } from '../language-popover/language-popover.page';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { PopoverController, AlertController, NavController } from '@ionic/angular';
+import { PopoverController, NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
- 
+import { LanguageService } from './../../services/language.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -13,37 +14,40 @@ import { TranslateService } from '@ngx-translate/core';
 export class LoginPage implements OnInit {
 
   credentialsForm: FormGroup;
- 
+  languages = [];
+  selected = '';
+  selectedLang = {};
+
   constructor(private formBuilder: FormBuilder,
-              private authService: AuthenticationService, 
-              private popoverCtrl: PopoverController, 
-              private alertCtrl: AlertController, 
-              private translate: TranslateService,
-              public nav: NavController,
-              ) { }
- 
+    private authService: AuthenticationService,
+    private popoverCtrl: PopoverController,
+    private translate: TranslateService,
+    public nav: NavController,
+    private languageService: LanguageService
+  ) { }
+
   ngOnInit() {
     this.credentialsForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      emailId: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
+    })
+
+    this.languages = this.languageService.getLanguages();
+    this.selected = this.languageService.selected;
+
+    this.languages.map(lang => {
+      if (lang.value === this.selected) {
+        this.selectedLang = lang;
+      }
     })
   }
 
-  onSubmit(){
+  onSubmit() {
     this.authService.login(this.credentialsForm.value).subscribe();
   }
 
   public register() {
     this.nav.navigateForward('/register');
-  }
-
-  async showAlert(ev) {
-    const alert = await this.alertCtrl.create({
-      header: this.translate.instant('ALERT.header'),
-      message: this.translate.instant('ALERT.msg'),
-      buttons: ['OK']
-    });
-    alert.present();
   }
 
   async openLanguagePopover(ev) {
@@ -53,5 +57,10 @@ export class LoginPage implements OnInit {
     });
     await popover.present();
   }
- 
+
+  select(lng) {
+    this.languageService.setLanguage(lng);
+    this.popoverCtrl.dismiss();
+  }
+
 }

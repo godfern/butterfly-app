@@ -5,16 +5,8 @@
 </ion-header>
 
 <ion-content>
-  <!-- <ion-item>
-    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
-      <ion-label position="floating">Enter your Verification Code here</ion-label>
-      <ion-input type="text" formControlName="otpCode"></ion-input>
-      <ion-button color="secondary" expand="full" type="submit" [disabled]="!otpForm.valid">Verify</ion-button>
-    </form>
-  </ion-item> -->
-
   <ion-grid>
-      <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
       <ion-row>
         <ion-col col-12>
           <ion-label position="floating">Enter your Verification Code here</ion-label>
@@ -22,8 +14,9 @@
       </ion-row>
       <ion-row>
         <ion-col col-6>
-            <ion-input type="text" formControlName="otpCode"></ion-input>
-            <ion-button color="secondary" expand="full" type="submit" [disabled]="!otpForm.valid">Verify</ion-button>
+          <ion-input type="text" formControlName="otpCode"></ion-input>
+          <ion-button color="secondary" expand="full" type="submit" [disabled]="!otpForm.valid">Verify</ion-button>
+          <ion-button color="tertiary" expand="block" (click)="resendOTP($event)">Resend OTP</ion-button>
         </ion-col>
       </ion-row>
     </form>

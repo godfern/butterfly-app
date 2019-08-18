@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from './../../services/authentication.service';
 import { OtpService } from './../../services/otp.service';
-
 import { MustMatch } from '../../_shared/helpers/form.helper';
 import { RegisterUtils } from '../../utils/register';
 
@@ -19,14 +18,14 @@ export class RegisterPage implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
-  // payload = {};
 
   constructor(private formBuilder: FormBuilder,
     private authService: AuthenticationService,
     private otpService: OtpService,
     public registerUtils: RegisterUtils,
     private nav: NavController,
-    private router: Router) { }
+    private router: Router,
+    private alertController: AlertController) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -44,17 +43,31 @@ export class RegisterPage implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
 
     let payload = this.registerUtils.getRegisterPayload(this.registerForm.value);
-    this.authService.register(payload).subscribe(res => {
-      let emailId = res.emailId;
-      this.otpService.sendOTP({id:res._id}).subscribe(res => {
-        this.router.navigate(['/otp', emailId]);
+    this.authService.register(payload).subscribe((res: any) => {
+      const { emailId, _id } = res;
+      this.otpService.sendOTP({ id: _id }).subscribe((res: any) => {
+        const { success, data } = res;
+        if (success) {
+          this.router.navigate(['/otp', emailId, _id, data.accId]);
+        } else {
+          this.showAlert('Something went wrong');
+        }
+
       })
     });
+  }
+
+  showAlert(msg) {
+    let alert = this.alertController.create({
+      message: msg,
+      header: 'Error',
+      buttons: ['OK']
+    });
+    alert.then(alert => alert.present());
   }
 }

@@ -13,13 +13,11 @@ const TOKEN_KEY = 'access_token';
   providedIn: 'root'
 })
 export class AuthenticationService {
-
   url = environment.url;
-  registerUrl = 'http://localhost:3000';
   user = null;
   authenticationState = new BehaviorSubject(false);
 
-  constructor(private http: HttpClient, private storage: Storage, private plt: Platform, private helper: JwtHelperService, 
+  constructor(private http: HttpClient, private storage: Storage, private plt: Platform, private helper: JwtHelperService,
     private alertController: AlertController) {
     this.plt.ready().then(() => {
       this.checkToken();
@@ -42,33 +40,41 @@ export class AuthenticationService {
     })
   }
 
+  setToken(token) {
+    this.storage.set(TOKEN_KEY, token);
+    this.user = this.helper.decodeToken(token);
+    this.authenticationState.next(true);
+  }
+
   register(credentials) {
-    return this.http.post(`${this.registerUrl}/butterfly-srv/user/create`, credentials)
-    .pipe(
-      tap(res => {
-        return res;
-      }),
-      catchError(e => {
-        this.showAlert(e.error.error);
-        throw new Error(e)
-      })
-    )
+    return this.http.post(`${this.url}/butterfly-srv/user/create`, credentials)
+      .pipe(
+        tap(res => {
+          return res;
+        }),
+        catchError(e => {
+          if (e.error.error) {
+            this.showAlert(e.error.error);
+          } else {
+            this.showAlert('Something went wrong');
+          }
+          throw new Error(e)
+        })
+      )
   }
 
   login(credentials) {
-    // return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
-    //   this.authenticationState.next(true);
-    // });
-
-    return this.http.post(`${this.url}/api/login`, credentials)
+    return this.http.post(`${this.url}/butterfly-srv/user/login`, credentials)
       .pipe(
-        tap(res => {
-          this.storage.set(TOKEN_KEY, res['token']);
-          this.user = this.helper.decodeToken(res['token']);
-          this.authenticationState.next(true);
+        tap((res: any) => {
+          const { data } = res;
+          this.setToken(data.access_token);
+          // this.storage.set(TOKEN_KEY, data.access_token);
+          // this.user = this.helper.decodeToken(data.access_token);
+          // this.authenticationState.next(true);
         }),
         catchError(e => {
-          this.showAlert(e.error.msg);
+          this.showAlert(e.error.error);
           throw new Error(e)
         })
       )
