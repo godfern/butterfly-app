@@ -1,7 +1,9 @@
-import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+
+import { AuthenticationService } from './../../services/authentication.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,14 +12,28 @@ import { Storage } from '@ionic/storage';
 })
 export class DashboardPage implements OnInit {
 
-  data = '';
   params = {
-    name: 'Godfrey'
+    name: ''
   }
+  data = { firstName: '', lastName: '' };
 
-  constructor(private authService: AuthenticationService, private storage: Storage, private toastController: ToastController) { }
+  message: string;
+
+  constructor(
+    private authService: AuthenticationService,
+    private userService: UserService,
+    private storage: Storage,
+    private toastController: ToastController
+  ) { }
 
   ngOnInit() {
+    this.storage.get('userId').then(userId => {
+      this.userService.userById({ id: userId }).subscribe((res: any) => {
+        const { firstName, lastName } = res;
+        this.data['firstName'] = firstName;
+        this.data['lastName'] = lastName;
+      });
+    });
   }
 
   loadSpecialInfo() {

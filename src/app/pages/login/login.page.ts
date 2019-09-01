@@ -1,10 +1,10 @@
-import { LanguagePopoverPage } from '../language-popover/language-popover.page';
-import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { PopoverController, NavController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
+
+import { LanguagePopoverPage } from '../language-popover/language-popover.page';
 import { LanguageService } from './../../services/language.service';
+import { AuthenticationService } from './../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +17,11 @@ export class LoginPage implements OnInit {
   languages = [];
   selected = '';
   selectedLang = {};
+  message: string;
 
   constructor(private formBuilder: FormBuilder,
     private authService: AuthenticationService,
     private popoverCtrl: PopoverController,
-    private translate: TranslateService,
     public nav: NavController,
     private languageService: LanguageService
   ) { }
@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
     this.languages = this.languageService.getLanguages();
     this.selected = this.languageService.selected;
 
-    this.languages.map(lang => {
+    this.languages.forEach(lang => {
       if (lang.value === this.selected) {
         this.selectedLang = lang;
       }
@@ -43,7 +43,9 @@ export class LoginPage implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(this.credentialsForm.value).subscribe();
+    this.authService.login(this.credentialsForm.value).subscribe((res: any) => {
+      const { data } = res;
+    });
   }
 
   public register() {
@@ -62,5 +64,4 @@ export class LoginPage implements OnInit {
     this.languageService.setLanguage(lng);
     this.popoverCtrl.dismiss();
   }
-
 }

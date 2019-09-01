@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-
 import { IonicModule } from '@ionic/angular';
-
 import { DashboardPage } from './dashboard.page';
 
 const routes: Routes = [
@@ -25,4 +23,4 @@ const routes: Routes = [
   ],
   declarations: [DashboardPage]
 })
-export class DashboardPageModule {}
+export class DashboardPageModule { }

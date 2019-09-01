@@ -34,7 +34,7 @@ export class AuthenticationService {
           this.user = decoded;
           this.authenticationState.next(true);
         } else {
-          this.authenticationState.next(true);
+          this.authenticationState.next(false);
         }
       }
     })
@@ -69,9 +69,7 @@ export class AuthenticationService {
         tap((res: any) => {
           const { data } = res;
           this.setToken(data.access_token);
-          // this.storage.set(TOKEN_KEY, data.access_token);
-          // this.user = this.helper.decodeToken(data.access_token);
-          // this.authenticationState.next(true);
+          this.storage.set('userId', data.userId);
         }),
         catchError(e => {
           this.showAlert(e.error.error);

@@ -1,20 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-title>My Dashboard</ion-title>
+
+    <ion-chip slot="end">
+      <ion-avatar>
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar>
+      <ion-label>{{data.firstName}} {{data.lastName}}</ion-label>
+    </ion-chip>
+
+    <ion-buttons slot="end">
       <ion-button (click)="logout()">
         <ion-icon slot="icon-only" name="log-out"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>My Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  Welcome to the members only
   <p>{{data}}</p>
   {{ 'HOME.greeting' | translate:params }}
 
-  <ion-button expand="full" (click)="loadSpecialInfo()">Load Spcial Info</ion-button>
-  <ion-button expand="full" (click)="clearToken()">Clear JWT</ion-button>
+  <p>{{message}}</p>
+
 
 </ion-content>
