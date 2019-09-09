@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'members',
     canActivate: [AuthGuard],
     loadChildren: './members/member-routing.module#MemberRoutingModule'
-  },
+  }
 ];
 
 @NgModule({
