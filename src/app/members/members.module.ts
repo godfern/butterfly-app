@@ -15,7 +15,11 @@ const routes: Routes = [
       },
       {
         path: 'home', loadChildren: '../members/home/home.module#HomePageModule'
-      }
+      },
+      {
+        path: 'messages', loadChildren: '../members/messages/messages.module#MessagesPageModule'
+      },
+      { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   }
 ];

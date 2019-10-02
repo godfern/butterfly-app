@@ -9,7 +9,7 @@ import { Router, RouterEvent } from '@angular/router';
 export class MembersPage implements OnInit {
   selectedPath = '';
 
-  pages = [
+  public pages = [
     {
       title: 'Dashboard',
       url: './dashboard'
@@ -17,6 +17,10 @@ export class MembersPage implements OnInit {
     {
       title: 'Home',
       url: './home'
+    },
+    {
+      title: 'Messages',
+      url: './messages'
     }
   ];
 
