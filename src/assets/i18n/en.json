@@ -14,7 +14,7 @@
     },
     "HOME": {
         "title": "My Home",
-        "greeting": "Hey {{name}} how are you",
+        "greeting": "Hey {{name}} Welcome to our app",
         "withcode": "<br><br>With code <b>epsich</b>",
         "btn": "Alarm test"
     },

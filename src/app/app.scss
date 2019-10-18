@@ -4,3 +4,9 @@
 // styles are for the entire app and not just one component. Additionally, this 
 // file can hold Sass mixins, functions, and placeholder classes to be imported 
 // and used throughout the application.
+
+router-outlet.router-flex + * {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+  }

@@ -13,11 +13,14 @@ const routes: Routes = [
     path: 'members',
     canActivate: [AuthGuard],
     loadChildren: './members/members.module#MembersPageModule'
-  }
+  },
+  { path: 'scheduled', loadChildren: './members/messages/scheduled/scheduled.module#ScheduledPageModule' },
+  { path: 'sent', loadChildren: './members/messages/sent/sent.module#SentPageModule' }
 ];
 
 @NgModule({
   imports: [
+    
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
   exports: [RouterModule]
