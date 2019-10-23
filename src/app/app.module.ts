@@ -14,10 +14,19 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { Firebase } from '@ionic-native/firebase/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
+
 import { RegisterUtils } from '../../src/app/utils/register';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+
+// import { FcmService } from './services/fcm.service';
+
+import { environment } from 'src/environments/environment';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -63,7 +72,8 @@ export function jwtOptionsFactory(storage) {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    RegisterUtils
+    RegisterUtils,
+    FCM
   ],
   bootstrap: [AppComponent]
 })
