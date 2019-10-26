@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
   selected = '';
   selectedLang = {};
   message: string;
+  appLogo: 'assets/app-icon.png'
 
   constructor(private formBuilder: FormBuilder,
     private authService: AuthenticationService,
