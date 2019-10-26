@@ -8,9 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LanguageService } from './services/language.service';
 
-// import { FcmService } from './services/fcm.service';
-import { FCM } from '@ionic-native/fcm/ngx';
-
+import { FcmService } from './services/fcm.service';
 
 @Component({
   selector: 'app-root',
@@ -24,9 +22,8 @@ export class AppComponent {
     private languageService: LanguageService,
     private authenticationService: AuthenticationService,
     private router: Router,
-    // private fcm: FcmService,
     public toastController: ToastController,
-    public fcm: FCM
+    public fcm: FcmService
   ) {
 
     this.initializeApp();
@@ -41,9 +38,8 @@ export class AppComponent {
   }
 
   private notificationSetup() {
-    
-    // this.fcm.getToken();
-    this.fcm.onNotification().subscribe(
+    this.fcm.getToken();
+    this.fcm.onNotifications().subscribe(
       (msg) => {
         if (this.platform.is('ios')) {
           this.presentToast(msg.aps.alert);
@@ -51,15 +47,9 @@ export class AppComponent {
           this.presentToast(msg.body);
         }
       });
-
-    this.fcm.getToken().then(token => {
-      // Your best bet is to here store the token on the user's profile on the
-      // Firebase database, so that when you want to send notifications to this
-      // specific user you can do it from Cloud Functions.
-      console.log('----token----');
-      console.log(token)
-    });
   }
+
+
 
 
   initializeApp() {
