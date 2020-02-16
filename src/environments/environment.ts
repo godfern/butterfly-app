@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  url:'http://ec2-18-189-184-27.us-east-2.compute.amazonaws.com:3000',
+  firebase : {
+    apiKey: 'AIzaSyBQBC1ILhrVyJrIDfFNcmJH09UyxiFLGVI',
+    authDomain: 'butterflyapp-f8f14.firebaseapp.com',
+    databaseURL: 'https://butterflyapp-f8f14.firebaseio.com/',
+    projectId: 'butterflyapp-f8f14',
+    storageBucket: 'gs://butterflyapp-f8f14.appspot.com/',
+    messagingSenderId: '1075267288376'
+    }
 };
 
 /*

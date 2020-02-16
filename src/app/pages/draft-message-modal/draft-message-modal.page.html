@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button [text]="buttonText" [icon]="buttonIcon"> </ion-back-button>
+    <ion-button (click)="closeModal()" slot="start" fill="clear">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+    <ion-title>{{modalTitle}}</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form [formGroup]="draftMessageForm" (ngSubmit)="onSubmit()">
+      <ion-row>
+        <ion-col col-12>
+          <ion-label position="stacked" required="true">To</ion-label>
+          <ion-input type="email" name="to" formControlName="to" placeholder="Recipients" [(ngModel)]="messageData.to"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-label>Date</ion-label>
+          <ion-radio-group (ionChange)="radioDateSelect($event)">
+            <ion-item>
+              <ion-label>Send Now</ion-label>
+              <ion-radio slot="start" color="success" value="now" checked></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Schedule</ion-label>
+              <ion-radio slot="start" color="success" value="schedule"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <ion-item *ngIf="displayCalender == true">
+              <ion-label>Date Time</ion-label>
+              <ion-datetime 
+                displayFormat="D MMM YYYY HH:mm A"  
+                pickerFormat="D MMM YYYY HH:mm A" 
+                min="2019" 
+                max="2020" 
+                formControlName="scheduledDate" 
+                [(ngModel)]="messageData.scheduledDate">
+              </ion-datetime>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-textarea id="message" placeholder="Message" formControlName="message" spellcheck="true" [(ngModel)]="messageData.message"></ion-textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-button type="submit" [disabled]="!draftMessageForm.valid">Submit</ion-button>
+          <ion-button type="button" (click)="onClear()" color="secondary">Clear</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

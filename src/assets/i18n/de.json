@@ -1,0 +1,13 @@
+{
+    "HOME": {
+        "title": "Zuhause",
+        "greeting": "Hallo {{name}} Wie geht es dir",
+        "withcode": "<br><br>Du bist <b>epsich</b>",
+        "btn": "Alarm anzeigen"
+    },
+    "ALERT": {
+        "header": "Fehler",
+        "msg": "Es gab"
+    }
+    
+}

@@ -1,0 +1,25 @@
+{
+    "LOGIN": {
+        "page-title": "Login",
+        "login-form":{
+            "labels":{
+                "email":"Email",
+                "password":"Passowrd"
+            },
+            "buttons": {
+                "submit": "Login",
+                "register": "Sign Up"
+            }
+        }
+    },
+    "HOME": {
+        "title": "My Home",
+        "greeting": "Hey {{name}} Welcome to our app",
+        "withcode": "<br><br>With code <b>epsich</b>",
+        "btn": "Alarm test"
+    },
+    "ALERT": {
+        "header": "My Alert",
+        "msg": "Open alert"
+    }
+}

@@ -1,6 +1,8 @@
 {
   "name": "butterfly-ionic-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "df3100bc"
 }

@@ -1,0 +1,39 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{'LOGIN.page-title' | translate}}</ion-title>
+  </ion-toolbar>
+  <ion-buttons slot="end">
+    <ion-button (click)="openLanguagePopover($event)">
+      <ion-icon name="more" slot="icon-only">
+      </ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-header> -->
+
+<ion-content class="ion-padding-top">
+
+  <ion-item class="logo-container" lines="none">
+    <img src="assets/app-icon.png" alt="" class="app-icon">
+  </ion-item>
+
+  <form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()" class="ion-padding-top">
+    <ion-item class="login-input" lines="none">
+      <!-- <ion-label position="floating">{{'LOGIN.login-form.labels.email' | translate}}</ion-label> -->
+      <ion-icon name="person"></ion-icon>
+      <ion-input type="email" formControlName="emailId" class="input-text" placeholder="Username"></ion-input>
+    </ion-item>
+
+    <ion-item class="login-input" lines="none">
+      <!-- <ion-label position="floating">{{'LOGIN.login-form.labels.password' | translate}}</ion-label> -->
+      <ion-icon name="key"></ion-icon>
+      <ion-input type="password" formControlName="password" placeholder="Password"> </ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="!credentialsForm.valid" color="light" shape="round">
+      {{'LOGIN.login-form.buttons.submit' | translate}}</ion-button>
+    <ion-button expand="block" type="button" (click)="register()" class="login-input" fill="clear">
+      D<div class="ion-text-lowercase">on't have an account?</div>   {{'LOGIN.login-form.buttons.register' | translate}}</ion-button>
+
+  </form>
+
+</ion-content>

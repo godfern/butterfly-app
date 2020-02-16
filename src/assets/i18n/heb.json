@@ -1,0 +1,31 @@
+{
+    "LOGIN": {
+        "page-title": "התחברות",
+        "login-form": {
+            "labels": {
+                "email": "דוא\"ל",
+                "password": "סיסמה"
+            },
+            "buttons": {
+                "submit": "התחברות",
+                "register": "הירשם"
+            }
+        }
+    },
+    "REGISTER": {
+        "title": "הירשם",
+        "greeting": "Hey {{name}} how are you",
+        "withcode": "<br><br>With code <b>epsich</b>",
+        "btn": "Alarm test"
+    },
+    "HOME": {
+        "title": "My Home",
+        "greeting": "Hey {{name}} how are you",
+        "withcode": "<br><br>With code <b>epsich</b>",
+        "btn": "Alarm test"
+    },
+    "ALERT": {
+        "header": "My Alert",
+        "msg": "Open alert"
+    }
+}

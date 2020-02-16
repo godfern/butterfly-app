@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding-top>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <ion-item class="input" lines="none">
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input type="text" formControlName="firstName"></ion-input>
+    </ion-item>
+
+    <ion-item class="input" lines="none">
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-input type="text" formControlName="lastName"></ion-input>
+    </ion-item>
+
+    <ion-item class="input" lines="none">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" formControlName="emailId"></ion-input>
+    </ion-item>
+
+    <ion-item class="input" lines="none">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-item class="input" lines="none">
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input type="password" formControlName="confirmPassword"></ion-input>
+    </ion-item>
+
+    <ion-button color="light" expand="block" shape="round" type="submit" [disabled]="!registerForm.valid">Register</ion-button>
+    <a routerLink="/login" class="router-link">Already have an account? LOGIN IN</a>
+
+  </form>
+</ion-content>
