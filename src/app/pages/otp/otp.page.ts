@@ -37,13 +37,10 @@ export class OtpPage implements OnInit {
   }
 
   async resendOTP(e) {
-    const { emailId } = this.data;
-    if (emailId) {
-      this.userService.userByEmail({ emailId: emailId }).subscribe((res: any) => {
-        const { emailId, _id } = res.data;
-        this.otpService.sendOTP({ id: _id }).subscribe(res => {
-          this.presentToast({ emailId })
-        })
+    const { userId, emailId } = this.data;
+    if (userId) {
+      this.otpService.sendOTP({ id: userId }).subscribe((res: any) => {
+        this.presentToast({ emailId })
       });
     }
   }
