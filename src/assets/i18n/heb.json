@@ -8,7 +8,8 @@
             },
             "buttons": {
                 "submit": "התחברות",
-                "register": "הירשם"
+                "register": "הירשם",
+                "forgotPassword":"הירשם"
             }
         }
     },

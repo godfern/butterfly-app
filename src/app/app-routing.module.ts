@@ -15,7 +15,8 @@ const routes: Routes = [
     loadChildren: './members/members.module#MembersPageModule'
   },
   { path: 'scheduled', loadChildren: './members/messages/scheduled/scheduled.module#ScheduledPageModule' },
-  { path: 'sent', loadChildren: './members/messages/sent/sent.module#SentPageModule' }
+  { path: 'sent', loadChildren: './members/messages/sent/sent.module#SentPageModule' },
+  { path: 'forgot-password', loadChildren: './pages/forgot-password/forgot-password.module#ForgotPasswordPageModule' },
 ];
 
 @NgModule({

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
-
 import { ModalController } from '@ionic/angular';
-
 import { DraftMessageModalPage } from '../pages/draft-message-modal/draft-message-modal.page'
 
 @Component({

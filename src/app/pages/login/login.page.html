@@ -31,8 +31,10 @@
 
     <ion-button expand="block" type="submit" [disabled]="!credentialsForm.valid" color="light" shape="round">
       {{'LOGIN.login-form.buttons.submit' | translate}}</ion-button>
+    <ion-button expand="block" type="button" (click)="forgotPassword()" class="forgot-password-input" fill="clear">  
+      {{'LOGIN.login-form.buttons.forgotPassword' | translate}}</ion-button>
     <ion-button expand="block" type="button" (click)="register()" class="login-input" fill="clear">
-      D<div class="ion-text-lowercase">on't have an account?</div>   {{'LOGIN.login-form.buttons.register' | translate}}</ion-button>
+      <div class="sign-up-text">Don't have an account?</div>   {{'LOGIN.login-form.buttons.register' | translate}}</ion-button>
 
   </form>
 

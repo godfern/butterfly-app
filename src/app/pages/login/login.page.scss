@@ -41,8 +41,16 @@ ion-button {
     height: 48px;
     --color:#fff;
     --color-activated: #fff;
+
+    
+}
+
+ion-button.forgot-password-input, .sign-up-text {
+    text-transform: none;
+    height: 20px;
 }
 
 ion-select {
     max-width: 50% !important;
 }
+

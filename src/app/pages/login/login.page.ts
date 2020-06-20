@@ -54,6 +54,10 @@ export class LoginPage implements OnInit {
     this.nav.navigateForward('/register');
   }
 
+  public forgotPassword() {
+    this.nav.navigateForward('/forgot-password');
+  }
+
   async openLanguagePopover(ev) {
     const popover = await this.popoverCtrl.create({
       component: LanguagePopoverPage,

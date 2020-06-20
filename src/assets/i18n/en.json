@@ -4,11 +4,34 @@
         "login-form":{
             "labels":{
                 "email":"Email",
-                "password":"Passowrd"
+                "password":"Password"
             },
             "buttons": {
                 "submit": "Login",
-                "register": "Sign Up"
+                "register": "Sign Up",
+                "forgotPassword": "Forgot password"
+            }
+        }
+    },
+    "FORGOT-PASSWORD":{
+        "forgot-password-form":{
+            "labels":{
+                "email":"Email"
+            },
+            "buttons":{
+                "submit":"Reset password"
+            }
+        }
+    },
+    "RESET-PASSWORD":{
+        "reset-password-form":{
+            "labels":{
+                "passcode":"Passcode",
+                "password":"Password",
+                "confirmPassword":"Confirm Password"
+            },
+            "buttons":{
+                "submit":"Submit"
             }
         }
     },

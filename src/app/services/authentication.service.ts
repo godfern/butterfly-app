@@ -15,6 +15,7 @@ const TOKEN_KEY = 'access_token';
 export class AuthenticationService {
   url = environment.url;
   user = null;
+  tempUrl = "http://demo4471636.mockable.io/"
   authenticationState = new BehaviorSubject(false);
 
   constructor(private http: HttpClient, private storage: Storage, private plt: Platform, private helper: JwtHelperService,
@@ -108,5 +109,35 @@ export class AuthenticationService {
       buttons: ['OK']
     });
     alert.then(alert => alert.present());
+  }
+
+
+  forgotPassword(emailId){
+    return this.http.post(`${this.tempUrl}reset-password`,{})
+    .pipe(
+      tap((res: any) => {
+        const { data } = res;
+
+      }),
+      catchError(e => {
+        this.showAlert(e.error.error);
+        throw new Error(e)
+      })
+    )
+  }
+
+
+  resetPassword(data){
+    return this.http.post(`${this.tempUrl}reset-password`,{})
+    .pipe(
+      tap((res: any) => {
+        const { data } = res;
+
+      }),
+      catchError(e => {
+        this.showAlert(e.error.error);
+        throw new Error(e)
+      })
+    )
   }
 }
