@@ -3,7 +3,7 @@ import { AuthenticationService } from './services/authentication.service';
 
 import { Component } from '@angular/core';
 
-import { Platform, ToastController } from '@ionic/angular';
+import { Platform, ToastController, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -29,7 +29,8 @@ export class AppComponent {
     private authenticationService: AuthenticationService,
     private router: Router,
     public toastController: ToastController,
-    public fcm: FcmService
+    public fcm: FcmService,
+    public navCtrl: NavController
   ) {
 
     this.initializeApp();
@@ -50,6 +51,9 @@ export class AppComponent {
         if (this.platform.is('ios')) {
           this.presentToast(msg.aps.alert);
         } else {
+          // if(data.wasTapped){
+            this.router.navigate(['members']);
+          // };
           this.presentToast(msg.body);
         }
       });

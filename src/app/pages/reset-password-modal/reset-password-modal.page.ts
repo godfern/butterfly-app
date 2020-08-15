@@ -27,7 +27,6 @@ export class RestPasswordModalPage implements OnInit {
   ) { }
  
   ngOnInit() {
-    // console.table(this.navParams);
     this.emailId = this.navParams.data.emailId;
 
     this.resetPasswordForm = this.formBuilder.group({
@@ -49,10 +48,10 @@ export class RestPasswordModalPage implements OnInit {
 
 
   onSubmit(): void{
-    const { passcode, password } = this.resetPasswordForm.value || {};
+    const { passcode, password } = this.resetPasswordForm.value;
     const resetPasswordData = {
-      passcode,
-      password,
+      resetToken: passcode,
+      newpassword: password,
       emailId:this.emailId
 
     }

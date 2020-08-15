@@ -16,13 +16,23 @@ export class MembersPage implements OnInit {
       title: 'Dashboard',
       url: './dashboard'
     },
-    // {
-    //   title: 'Home',
-    //   url: './home'
-    // },
     {
       title: 'Messages',
-      url: './messages'
+      url: './messages',
+      children:[
+        {
+          title: 'Received',
+          url: './received'
+        },
+        {
+          title: 'Sent',
+          url: './sent'
+        },
+        {
+          title: 'Scheduled',
+          url: './scheduled'
+        }
+      ]
     }
   ];
 

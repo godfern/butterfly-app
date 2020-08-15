@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   url:'http://ec2-3-14-88-194.us-east-2.compute.amazonaws.com:3000',
   // url: 'http://localhost:3000',
+  // url: 'http://192.168.1.103:3000',
+  // url: 'http://localhost:3000',
   firebase : {
     apiKey: 'AIzaSyBQBC1ILhrVyJrIDfFNcmJH09UyxiFLGVI',
     authDomain: 'butterflyapp-f8f14.firebaseapp.com',

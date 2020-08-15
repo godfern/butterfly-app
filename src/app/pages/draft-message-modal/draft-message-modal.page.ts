@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams, ToastController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 
 import { MessageService } from './../../services/message.service';
  
@@ -15,19 +16,18 @@ export class DraftMessageModalPage implements OnInit {
   modelId:number;
   draftMessageForm: FormGroup;
   displayCalender:boolean;
+  senderId:string;
   messageData = { to: '', selectedRadioItem: '', scheduledDate: new Date().toISOString(), message: '' };
  
   constructor(
     private modalController: ModalController,
     private navParams: NavParams,
     private message: MessageService,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private storage: Storage,
   ) { }
  
   ngOnInit() {
-    // console.table(this.navParams);
-    // this.modelId = this.navParams.data.paramID;
-
     this.draftMessageForm = new FormGroup({
       to: new FormControl('',[ Validators.required, Validators.email]),
       scheduledDate: new FormControl(),
@@ -53,11 +53,24 @@ export class DraftMessageModalPage implements OnInit {
 
   onSubmit(): void{
     const { to, scheduledDate, selectedRadioItem, message } = this.messageData;
-    // console.log('example',this.messageData);
+
+    this.storage.get('userId').then((id) => {
+      this.senderId = id;
+      console.log('ID:'+id);
+      console.log('Me: Hey, ' + name + '! You have a very nice name.');
+    });
+
+    let payload = {
+      senderId: this.senderId,
+      reciverEmail: to,
+      title: "My Message",
+      content: message
+    }
 
     if(selectedRadioItem === 'now'){
       this.presentToast({messageText: 'Sending message...',duration:1000});
-      this.message.sendMessage(this.messageData).subscribe(() => {
+
+      this.message.sendMessage(payload).subscribe(() => {
         this.presentToast({messageText: 'Message sent',duration:1000});
         this.closeModal()
       });

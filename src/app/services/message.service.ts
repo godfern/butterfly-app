@@ -3,15 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 import { AlertController } from '@ionic/angular';
 
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  // url = environment.url;
-  url = 'http://demo4471636.mockable.io';
+  url = environment.url;
   
 
   constructor(
@@ -20,8 +19,7 @@ export class MessageService {
   ) { }
 
   sendMessage(payload) {
-
-    return this.http.post(`${this.url}/butterfly-srv/message/sendMessage`, payload)
+    return this.http.post(`${this.url}/butterfly-srv/notifications/send`, payload)
       .pipe(
         tap(res => {
           return res;

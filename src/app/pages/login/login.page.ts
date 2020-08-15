@@ -5,6 +5,7 @@ import { PopoverController, NavController } from '@ionic/angular';
 import { LanguagePopoverPage } from '../language-popover/language-popover.page';
 import { LanguageService } from './../../services/language.service';
 import { AuthenticationService } from './../../services/authentication.service';
+import { FcmService } from '../../services/fcm.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginPage implements OnInit {
     private authService: AuthenticationService,
     private popoverCtrl: PopoverController,
     public nav: NavController,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private fcm: FcmService
   ) { }
 
   ngOnInit() {
@@ -46,7 +48,18 @@ export class LoginPage implements OnInit {
 
   onSubmit() {
     this.authService.login(this.credentialsForm.value).subscribe((res: any) => {
-      const { data } = res;
+      const { data:{userId} } = res;
+      // this.fcm.deleteDevice()
+      this.fcm.getDevices().subscribe(res => {
+        res.forEach(element => {
+      
+          let fcmData: any = element.payload.doc.data();
+          this.fcm.saveFCMRemote(userId, fcmData.token).subscribe(res => {
+            console.log('-------Saved-------');
+            console.log(res)
+          });
+        });
+      })
     });
   }
 

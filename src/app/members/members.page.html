@@ -8,13 +8,26 @@
 
     <ion-content>
       <ion-list>
-        <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
-          <ion-item [routerLink]="p.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(p.url)">
+        <div  *ngFor="let p of pages">
+          <ion-menu-toggle *ngIf="p.url">
+            <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active">
             <ion-label>
               {{ p.title }}
             </ion-label>
           </ion-item>
-        </ion-menu-toggle>
+
+          </ion-menu-toggle>
+            <ion-list>
+            <ion-menu-toggle>
+              <ion-item class="sub-item" *ngFor="let sub of p.children" [routerLink]="sub.url" routerDirection="root" routerLinkActive="active">
+                <ion-label>
+                  {{ sub.title }}
+                </ion-label>
+              </ion-item>
+
+            </ion-menu-toggle>
+          </ion-list>
+        </div>
       </ion-list>
     </ion-content>
   </ion-menu>

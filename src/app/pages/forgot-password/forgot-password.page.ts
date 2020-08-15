@@ -29,7 +29,7 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   onSubmit() {
-    const { emailId } = this.forgotPasswordForm.value || {};
+    const { emailId } = this.forgotPasswordForm.value;
     this.authService.forgotPassword(this.forgotPasswordForm.value).subscribe((res: any) => {
       const { data } = res;
       this.presentToast({ emailId });

@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { FcmService } from '../services/fcm.service';
 
 const TOKEN_KEY = 'access_token';
 
@@ -15,11 +16,10 @@ const TOKEN_KEY = 'access_token';
 export class AuthenticationService {
   url = environment.url;
   user = null;
-  tempUrl = "http://demo4471636.mockable.io/"
   authenticationState = new BehaviorSubject(false);
 
   constructor(private http: HttpClient, private storage: Storage, private plt: Platform, private helper: JwtHelperService,
-    private alertController: AlertController) {
+    private alertController: AlertController, private fcm: FcmService) {
     this.plt.ready().then(() => {
       this.checkToken();
     });
@@ -81,6 +81,7 @@ export class AuthenticationService {
 
   logout() {
     return this.storage.remove(TOKEN_KEY).then(() => {
+      this.fcm.deleteDevice();
       this.authenticationState.next(false);
     });
   }
@@ -112,8 +113,9 @@ export class AuthenticationService {
   }
 
 
-  forgotPassword(emailId){
-    return this.http.post(`${this.tempUrl}reset-password`,{})
+  forgotPassword(email){
+    const { emailId } = email;
+    return this.http.put(`${this.url}/butterfly-srv/user/initiate/password-reset?email=${emailId}`,{})
     .pipe(
       tap((res: any) => {
         const { data } = res;
@@ -128,7 +130,7 @@ export class AuthenticationService {
 
 
   resetPassword(data){
-    return this.http.post(`${this.tempUrl}reset-password`,{})
+    return this.http.put(`${this.url}/butterfly-srv/user/verify/password-reset`, data)
     .pipe(
       tap((res: any) => {
         const { data } = res;
